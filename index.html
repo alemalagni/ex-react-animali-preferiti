@@ -27,6 +27,20 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+    <script type="text/babel">
+        const { createRoot } = ReactDOM;
+        const listaAnimali = document.querySelector('.lista-animali');
+        listaAnimali.innerHTML = `
+        <details>
+            <summary>Animali</summary>
+            <ul>
+            ${animals.map(a => `<li>${a}</li>`).join("")}
+            </ul>
+        </details>`;
+        console.log(listaAnimali)
+        const root = createRoot(listaAnimali);
+        root.render(<ReactApp />)
+    </script>
 </body>
 
 </html>
