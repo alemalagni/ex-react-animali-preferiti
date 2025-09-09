@@ -29,18 +29,37 @@
 
     <script type="text/babel">
         const { createRoot } = ReactDOM;
-        const listaAnimali = document.querySelector('.lista-animali');
-        listaAnimali.innerHTML = `
-        <details>
-            <summary>Animali</summary>
-            <ul>
-            ${animals.map(a => `<li>${a}</li>`).join("")}
-            </ul>
-        </details>`;
-        console.log(listaAnimali)
+        const { useState } = React;
+
+        function ReactApp() {
+            const [animals, setAnimals] = useState([]);
+
+            function newAnimals() {
+                const animalsChoices = ["Cane", "Gatto", "Pappagallo", "Cavallo", "Panda"];
+                const aniRan = Math.floor(Math.random() * animalsChoices.length)
+                setAnimals([...animals, animalsChoices[aniRan]]);
+            }
+
+            return (
+                <div>
+                    <button onClick={newAnimals}>Aggiungi animale</button>
+                    <details>
+                        <summary>Animali</summary>
+                        <ul>
+                            {animals.map((a, i) => (
+                                <li key={i}>{a}</li>
+                            ))}
+                        </ul>
+                    </details>
+                </div>
+            );
+        }
+
+        const listaAnimali = document.querySelector(".lista-animali");
         const root = createRoot(listaAnimali);
-        root.render(<ReactApp />)
+        root.render(<ReactApp />);
     </script>
+
 </body>
 
 </html>
